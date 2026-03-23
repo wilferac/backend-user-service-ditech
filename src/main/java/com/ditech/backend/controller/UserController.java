@@ -27,24 +27,37 @@ public class UserController
         this.userService = userService;
     }
 
+    /**
+     * Creates a new user.
+     * Receives a JSON request body and returns the created user.
+     */
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user)
     {
         return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
     }
 
+    /**
+     * Returns a list of all users.
+     */
     @GetMapping
     public List<User> getAllUsers()
     {
         return userService.getAllUsers();
     }
 
+    /**
+     * Retrieves a user by ID.
+     */
     @GetMapping("/{id}")
     public User getUser(@PathVariable Long id)
     {
         return userService.getUserById(id);
     }
 
+    /**
+     * Deletes a user by ID.
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id)
     {
